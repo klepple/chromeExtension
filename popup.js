@@ -3,6 +3,27 @@
 // found in the LICENSE file.
 
 /**
+* Gets the title of the youtube videos open in various tabs.
+* 
+*/
+
+function getYoutubeTitles() {
+  var queryInfo = {
+    url: "https://www.youtube.com/watch?v=*",
+  };
+
+  chrome.tabs.query(queryInfo, (tabs) => {
+    var titleList = new Array();
+    for(int i = 0; i < tabs.length; i++) {
+      var youtubeTab = tabs[i];
+      titleList.push(youtubeTab.title);
+    }
+    return titleList;
+  });
+}
+
+
+/**
  * Get the current URL.
  *
  * @param {function(string)} callback called when the URL of the current tab
